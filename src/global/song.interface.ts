@@ -5,7 +5,7 @@ interface ISong {
     audioUrl: string;
     colours: string[];
     id: string;
-    active: boolean;
+    isActive: boolean;
 }
 
 export default ISong;

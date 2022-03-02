@@ -11,7 +11,7 @@ const getSongs = (): ISong[] => {
       audioUrl: "https://mp3.chillhop.com/serve.php/?mp3=30133",
       colours: ["#FE906B", "#213B4F"],
       id: uuid(),
-      active: true,
+      isActive: true,
     },
     {
       name: "Green Tea",
@@ -21,7 +21,7 @@ const getSongs = (): ISong[] => {
       audioUrl: "https://mp3.chillhop.com/serve.php/?mp3=30308",
       colours: ["#DACEB2", "#E0BE00"],
       id: uuid(),
-      active: false,
+      isActive: false,
     },
     {
       name: "Tropical Midnight",
@@ -31,7 +31,7 @@ const getSongs = (): ISong[] => {
       audioUrl: "https://mp3.chillhop.com/serve.php/?mp3=31516",
       colours: ["#3B8344", "#17213A"],
       id: uuid(),
-      active: false,
+      isActive: false,
     },
     {
       name: "Santiago",
@@ -41,7 +41,7 @@ const getSongs = (): ISong[] => {
       audioUrl: "https://mp3.chillhop.com/serve.php/?mp3=30202",
       colours: ["#FDECCE", "#737C8C"],
       id: uuid(),
-      active: false,
+      isActive: false,
     },
     {
       name: "Soulsounds",
@@ -51,7 +51,7 @@ const getSongs = (): ISong[] => {
       audioUrl: "https://mp3.chillhop.com/serve.php/?mp3=27500",
       colours: ["#EE9695", "#28323E"],
       id: uuid(),
-      active: false,
+      isActive: false,
     },
     {
       name: "la zona",
@@ -61,7 +61,7 @@ const getSongs = (): ISong[] => {
       audioUrl: "https://mp3.chillhop.com/serve.php/?mp3=27455",
       colours: ["#B4C5D9", "#6A5834"],
       id: uuid(),
-      active: false,
+      isActive: false,
     },
     {
       name: "Conflicted",
@@ -71,7 +71,7 @@ const getSongs = (): ISong[] => {
       audioUrl: "https://mp3.chillhop.com/serve.php/?mp3=24642",
       colours: ["#43536D", "#DF8D8D"],
       id: uuid(),
-      active: false,
+      isActive: false,
     },
   ];
 };
