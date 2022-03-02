@@ -24,7 +24,7 @@ interface Props {
 const Song: React.FC<Props> = ({ currentSong }) => {
   return (
     <SongContainer>
-      <img src={currentSong.coverUrl}></img>
+      <img alt={currentSong.name} src={currentSong.coverUrl}></img>
       <h2>{currentSong.name}</h2>
       <h3>{currentSong.artist}</h3>
     </SongContainer>
