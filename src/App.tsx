@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Player from "./components/Player";
-import SongDiv from "./components/Song";
+import Song from "./components/Song";
 import "./styles/global.scss";
 import getSongs from "./global/utils";
 
@@ -10,7 +10,7 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <SongDiv currentSong={currentSong} />
+      <Song currentSong={currentSong} />
       <Player currentSong={currentSong} />
     </div>
   );
