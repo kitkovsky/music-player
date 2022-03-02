@@ -28,11 +28,16 @@ const SongDescription = styled.div`
 
 interface Props {
   song: ISong;
+  setCurrentSong: React.Dispatch<React.SetStateAction<ISong>>;
 }
 
-const LibrarySong: React.FC<Props> = ({ song }) => {
+const LibrarySong: React.FC<Props> = ({ song, setCurrentSong }) => {
+  const selectSongHandler = () => {
+    setCurrentSong(song);
+  };
+
   return (
-    <LibrarySongContainer>
+    <LibrarySongContainer onClick={selectSongHandler}>
       <img alt={song.name} src={song.coverUrl}></img>
       <SongDescription>
         <h3>{song.name}</h3>

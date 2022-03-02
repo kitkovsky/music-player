@@ -18,14 +18,19 @@ const LibraryContainer = styled.div`
 
 interface Props {
   songs: ISong[];
+  setCurrentSong: React.Dispatch<React.SetStateAction<ISong>>;
 }
 
-const Library: React.FC<Props> = ({ songs }) => {
+const Library: React.FC<Props> = ({ songs, setCurrentSong }) => {
   return (
     <LibraryContainer>
       <h2>Library</h2>
       {songs.map((song) => (
-        <LibrarySong song={song} />
+        <LibrarySong
+          song={song}
+          setCurrentSong={setCurrentSong}
+          key={song.id}
+        />
       ))}
     </LibraryContainer>
   );
