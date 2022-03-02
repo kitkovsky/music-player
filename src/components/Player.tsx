@@ -41,13 +41,20 @@ const PlayControl = styled.div`
 
 interface Props {
   currentSong: ISong;
+  isPlaying: boolean;
+  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Player: React.FC<Props> = ({ currentSong }) => {
+const Player: React.FC<Props> = ({ currentSong, isPlaying, setIsPlaying }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const playSongHandler = () => {
     if (audioRef.current) {
-      audioRef.current.play();
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
     }
   }
 
