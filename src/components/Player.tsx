@@ -1,11 +1,11 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlay,
   faAngleLeft,
   faAngleRight,
-  faPause
+  faPause,
 } from "@fortawesome/free-solid-svg-icons";
 import ISong from "../global/song.interface";
 import ISongInfo from "../global/songInfo.interface";
@@ -42,18 +42,20 @@ const PlayControl = styled.div`
 `;
 
 interface Props {
-  currentSong: ISong;
   isPlaying: boolean;
   setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
+  audioRef: React.RefObject<HTMLAudioElement>;
+  songInfo: ISongInfo;
+  setSongInfo: React.Dispatch<React.SetStateAction<ISongInfo>>;
 }
 
-const Player: React.FC<Props> = ({ currentSong, isPlaying, setIsPlaying }) => {
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const [songInfo, setSongInfo] = useState<ISongInfo>({
-    currentTime: 0,
-    duration: 0,
-  });
-
+const Player: React.FC<Props> = ({
+  isPlaying,
+  setIsPlaying,
+  audioRef,
+  songInfo,
+  setSongInfo,
+}) => {
   const playSongHandler = () => {
     if (audioRef.current) {
       if (isPlaying) {
@@ -63,13 +65,6 @@ const Player: React.FC<Props> = ({ currentSong, isPlaying, setIsPlaying }) => {
       }
       setIsPlaying(!isPlaying);
     }
-  };
-
-  const timeUpdateHandler = (event: React.SyntheticEvent<HTMLAudioElement>) => {
-    const target = event.target as HTMLAudioElement;
-    const duration = target.duration;
-    const currentTime = target.currentTime;
-    setSongInfo({ ...songInfo, currentTime: currentTime, duration: duration });
   };
 
   const dragHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -113,12 +108,6 @@ const Player: React.FC<Props> = ({ currentSong, isPlaying, setIsPlaying }) => {
           size="2x"
         />
       </PlayControl>
-      <audio
-        onTimeUpdate={(event) => timeUpdateHandler(event)}
-        onLoadedMetadata={(event) => timeUpdateHandler(event)}
-        ref={audioRef}
-        src={currentSong.audioUrl}
-      ></audio>
     </PlayerContainer>
   );
 };

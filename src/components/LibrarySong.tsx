@@ -29,11 +29,28 @@ const SongDescription = styled.div`
 interface Props {
   song: ISong;
   setCurrentSong: React.Dispatch<React.SetStateAction<ISong>>;
+  audioRef: React.RefObject<HTMLAudioElement>;
+  isPlaying: boolean;
 }
 
-const LibrarySong: React.FC<Props> = ({ song, setCurrentSong }) => {
+const LibrarySong: React.FC<Props> = ({
+  song,
+  setCurrentSong,
+  audioRef,
+  isPlaying,
+}) => {
   const selectSongHandler = () => {
     setCurrentSong(song);
+    if (audioRef.current && isPlaying) {
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          if (audioRef.current) {
+            audioRef.current.play();
+          }
+        });
+      }
+    }
   };
 
   return (
