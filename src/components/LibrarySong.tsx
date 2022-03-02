@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import ISong from "../global/song.interface";
 
-const LibrarySongContainer = styled.div`
+const LibrarySongContainer = styled.div<StyleProps>`
+  background-color: ${(props) => (props.isActive ? "lightblue" : "white")};
   display: flex;
   align-items: center;
   padding: 1rem 2rem 1rem 2rem;
@@ -28,19 +29,28 @@ const SongDescription = styled.div`
 
 interface Props {
   song: ISong;
+  currentSong: ISong;
   setCurrentSong: React.Dispatch<React.SetStateAction<ISong>>;
   audioRef: React.RefObject<HTMLAudioElement>;
   isPlaying: boolean;
 }
 
+interface StyleProps {
+  isActive: boolean;
+}
+
 const LibrarySong: React.FC<Props> = ({
   song,
+  currentSong,
   setCurrentSong,
   audioRef,
   isPlaying,
 }) => {
   const selectSongHandler = () => {
+    currentSong.isActive = false;
+    song.isActive = true;
     setCurrentSong(song);
+
     if (audioRef.current && isPlaying) {
       const playPromise = audioRef.current.play();
       if (playPromise !== undefined) {
@@ -54,7 +64,7 @@ const LibrarySong: React.FC<Props> = ({
   };
 
   return (
-    <LibrarySongContainer onClick={selectSongHandler}>
+    <LibrarySongContainer isActive={song.isActive} onClick={selectSongHandler}>
       <img alt={song.name} src={song.coverUrl}></img>
       <SongDescription>
         <h3>{song.name}</h3>
