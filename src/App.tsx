@@ -1,10 +1,13 @@
-import React from "react";
-import styled from "styled-components";
+import Player from "./components/Player";
+import Song from "./components/Song";
+import "./styles/global.scss";
+import data from "./global/utils";
 
 function App() {
   return (
     <div className="App">
-      <h1>music player</h1>
+      <Song />
+      <Player />
     </div>
   );
 }
