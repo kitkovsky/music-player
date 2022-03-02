@@ -1,12 +1,14 @@
-import React, { useRef }from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlay,
   faAngleLeft,
   faAngleRight,
+  faPause
 } from "@fortawesome/free-solid-svg-icons";
 import ISong from "../global/song.interface";
+import ISongInfo from "../global/songInfo.interface";
 
 const PlayerContainer = styled.div`
   min-height: 20vh;
@@ -47,6 +49,11 @@ interface Props {
 
 const Player: React.FC<Props> = ({ currentSong, isPlaying, setIsPlaying }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const [songInfo, setSongInfo] = useState<ISongInfo>({
+    currentTime: 0,
+    duration: 0,
+  });
+
   const playSongHandler = () => {
     if (audioRef.current) {
       if (isPlaying) {
@@ -56,25 +63,62 @@ const Player: React.FC<Props> = ({ currentSong, isPlaying, setIsPlaying }) => {
       }
       setIsPlaying(!isPlaying);
     }
-  }
+  };
+
+  const timeUpdateHandler = (event: React.SyntheticEvent<HTMLAudioElement>) => {
+    const target = event.target as HTMLAudioElement;
+    const duration = target.duration;
+    const currentTime = target.currentTime;
+    setSongInfo({ ...songInfo, currentTime: currentTime, duration: duration });
+  };
+
+  const dragHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = parseInt(event.target.value);
+    }
+    setSongInfo({ ...songInfo, currentTime: parseInt(event.target.value) });
+  };
+
+  const getTime = (time: number) => {
+    return (
+      Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
+    );
+  };
 
   return (
     <PlayerContainer>
       <TimeControl>
-        <p>Start Time</p>
-        <input type="range" />
-        <p>End Time</p>
+        <p>{getTime(songInfo.currentTime)}</p>
+        <input
+          onChange={(event) => dragHandler(event)}
+          min={0}
+          max={songInfo.duration}
+          value={songInfo.currentTime}
+          type="range"
+        />
+        <p>{getTime(songInfo.duration)}</p>
       </TimeControl>
       <PlayControl>
         <FontAwesomeIcon className="skip-back" icon={faAngleLeft} size="2x" />
-        <FontAwesomeIcon onClick={playSongHandler} className="play" icon={faPlay} size="2x" />
+        <FontAwesomeIcon
+          // TODO: check if these class names are necessary
+          onClick={playSongHandler}
+          className="play"
+          icon={isPlaying ? faPause : faPlay}
+          size="2x"
+        />
         <FontAwesomeIcon
           className="skip-forward"
           icon={faAngleRight}
           size="2x"
         />
       </PlayControl>
-      <audio ref={audioRef} src={currentSong.audioUrl}></audio>
+      <audio
+        onTimeUpdate={(event) => timeUpdateHandler(event)}
+        onLoadedMetadata={(event) => timeUpdateHandler(event)}
+        ref={audioRef}
+        src={currentSong.audioUrl}
+      ></audio>
     </PlayerContainer>
   );
 };
