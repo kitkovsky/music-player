@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Player from "./components/Player";
 import Song from "./components/Song";
+import Library from "./components/Library";
 import "./styles/global.scss";
 import getSongs from "./global/utils";
 
@@ -17,6 +18,7 @@ const App: React.FC = () => {
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
       />
+      <Library songs={songs} />
     </div>
   );
 };
