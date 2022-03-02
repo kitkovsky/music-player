@@ -1,7 +1,7 @@
-import { uuid } from "uuidv4";
-import Song from "./song.interface";
+import { v4 as uuid } from "uuid";
+import ISong from "./song.interface";
 
-const getSongs = (): Song[] => {
+const getSongs = (): ISong[] => {
   return [
     {
       name: "Drift",

@@ -1,4 +1,4 @@
-interface Song {
+interface ISong {
     name: string;
     coverUrl: string;
     artist: string;
@@ -8,4 +8,4 @@ interface Song {
     active: boolean;
 }
 
-export default Song;
+export default ISong;
