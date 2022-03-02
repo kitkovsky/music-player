@@ -1,3 +1,4 @@
+import React, { useRef }from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -5,6 +6,7 @@ import {
   faAngleLeft,
   faAngleRight,
 } from "@fortawesome/free-solid-svg-icons";
+import ISong from "../global/song.interface";
 
 const PlayerContainer = styled.div`
   min-height: 20vh;
@@ -37,7 +39,18 @@ const PlayControl = styled.div`
   }
 `;
 
-const Player = () => {
+interface Props {
+  currentSong: ISong;
+}
+
+const Player: React.FC<Props> = ({ currentSong }) => {
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const playSongHandler = () => {
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
+  }
+
   return (
     <PlayerContainer>
       <TimeControl>
@@ -47,13 +60,14 @@ const Player = () => {
       </TimeControl>
       <PlayControl>
         <FontAwesomeIcon className="skip-back" icon={faAngleLeft} size="2x" />
-        <FontAwesomeIcon className="play" icon={faPlay} size="2x" />
+        <FontAwesomeIcon onClick={playSongHandler} className="play" icon={faPlay} size="2x" />
         <FontAwesomeIcon
           className="skip-forward"
           icon={faAngleRight}
           size="2x"
         />
       </PlayControl>
+      <audio ref={audioRef} src={currentSong.audioUrl}></audio>
     </PlayerContainer>
   );
 };
