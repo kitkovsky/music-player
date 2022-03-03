@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import ISongInfo from "../global/songInfo.interface";
 import ISong from "../global/song.interface";
+import { playAudio } from "../global/utils";
 
 const PlayerContainer = styled.div`
   min-height: 20vh;
@@ -100,6 +101,7 @@ const Player: React.FC<Props> = ({
     currentSong.isActive = false;
     songs[newId].isActive = true;
     setCurrentSong(songs[newId]);
+    playAudio(isPlaying, audioRef);
   };
 
   const getTime = (time: number) => {
@@ -119,7 +121,6 @@ const Player: React.FC<Props> = ({
           value={songInfo.currentTime}
           type="range"
         />
-        <p>{getTime(songInfo.duration)}</p>
         <p>{songInfo.duration ? getTime(songInfo.duration) : "0:00"}</p>
       </TimeControl>
       <PlayControl>

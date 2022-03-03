@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ISong from "../global/song.interface";
+import { playAudio } from "../global/utils";
 
 const LibrarySongContainer = styled.div<StyleProps>`
   background-color: ${(props) => (props.isActive ? "lightblue" : "white")};
@@ -50,17 +51,7 @@ const LibrarySong: React.FC<Props> = ({
     currentSong.isActive = false;
     song.isActive = true;
     setCurrentSong(song);
-
-    if (audioRef.current && isPlaying) {
-      const playPromise = audioRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.then(() => {
-          if (audioRef.current) {
-            audioRef.current.play();
-          }
-        });
-      }
-    }
+    playAudio(isPlaying, audioRef);
   };
 
   return (
