@@ -38,6 +38,22 @@ const App: React.FC = () => {
     });
   };
 
+  const songEndHandler = async () => {
+    const currentId = songs.findIndex((song) => song.id === currentSong.id);
+    let newId = currentId + 1;
+    if (newId === songs.length) {
+      newId = 0;
+    }
+    currentSong.isActive = false;
+    songs[newId].isActive = true;
+    await setCurrentSong(songs[newId]);
+    if (isPlaying) {
+      if (audioRef.current) {
+        audioRef.current.play();
+      }
+    }
+  };
+
   return (
     <div className="App">
       <Nav isLibraryOpen={isLibraryOpen} setIsLibraryOpen={setIsLibraryOpen} />
@@ -63,6 +79,7 @@ const App: React.FC = () => {
       <audio
         onTimeUpdate={(event) => timeUpdateHandler(event)}
         onLoadedMetadata={(event) => timeUpdateHandler(event)}
+        onEnded={songEndHandler}
         ref={audioRef}
         src={currentSong.audioUrl}
       ></audio>
