@@ -9,7 +9,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import ISongInfo from "../global/songInfo.interface";
 import ISong from "../global/song.interface";
-import { playAudio } from "../global/utils";
 
 const PlayerContainer = styled.div`
   min-height: 20vh;
@@ -127,7 +126,7 @@ const Player: React.FC<Props> = ({
     setSongInfo({ ...songInfo, currentTime: parseInt(event.target.value) });
   };
 
-  const skipTrackHandler = (direction: Direction) => {
+  const skipTrackHandler = async (direction: Direction) => {
     const currentId = songs.findIndex((song) => song.id === currentSong.id);
     let newId: number;
     if (direction === "forward") {
@@ -144,8 +143,12 @@ const Player: React.FC<Props> = ({
 
     currentSong.isActive = false;
     songs[newId].isActive = true;
-    setCurrentSong(songs[newId]);
-    playAudio(isPlaying, audioRef);
+    await setCurrentSong(songs[newId]);
+    if (isPlaying) {
+      if (audioRef.current) {
+        audioRef.current.play();
+      }
+    }
   };
 
   const getTime = (time: number) => {
