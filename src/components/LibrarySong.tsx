@@ -7,10 +7,11 @@ const LibrarySongContainer = styled.div<StyleProps>`
   display: flex;
   align-items: center;
   padding: 1rem 2rem 1rem 2rem;
-  height: 10rem;
+  height: 15rem;
   cursor: pointer;
+  transition: background 0.2s ease;
   img {
-    width: 7rem;
+    height: 100%;
   }
   &:hover {
     background: lightblue;

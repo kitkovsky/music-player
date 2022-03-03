@@ -14,10 +14,14 @@ const StyledNav = styled.nav`
     cursor: pointer;
     padding: 0.8rem;
     transition: all 0.3s ease;
+    z-index: 10;
     &:hover {
       background: rgb(65, 65, 65);
       color: white;
     }
+  }
+  h1 {
+    z-index: -1;
   }
 `;
 

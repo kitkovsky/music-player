@@ -6,6 +6,16 @@ import Nav from "./components/Nav";
 import "./styles/global.scss";
 import getSongs from "./global/data";
 import ISongInfo from "./global/songInfo.interface";
+import styled from "styled-components";
+
+const AppContainer = styled.div<StyleProps>`
+  transition: all 0.5s ease;
+  margin-left: ${(props) => props.isLibraryOpen ? "30%" : "0%"};
+`
+
+interface StyleProps {
+  isLibraryOpen: boolean;
+}
 
 const App: React.FC = () => {
   const [songs, setSongs] = useState(getSongs());
@@ -55,7 +65,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="App">
+    <AppContainer className="App" isLibraryOpen={isLibraryOpen} >
       <Nav isLibraryOpen={isLibraryOpen} setIsLibraryOpen={setIsLibraryOpen} />
       <Song currentSong={currentSong} />
       <Player
@@ -83,7 +93,7 @@ const App: React.FC = () => {
         ref={audioRef}
         src={currentSong.audioUrl}
       ></audio>
-    </div>
+    </AppContainer>
   );
 };
 

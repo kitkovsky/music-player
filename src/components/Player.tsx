@@ -43,6 +43,9 @@ const TimeControl = styled.div`
   p {
     padding: 1rem;
   }
+  @media screen and (max-width: 850px) {
+    width: 90%;
+  }
 `;
 
 const Track = styled.div<TrackProps>`
@@ -74,6 +77,9 @@ const PlayControl = styled.div`
   padding: 1rem;
   svg {
     cursor: pointer;
+  }
+  @media screen and (max-width: 850px) {
+    width: 50%;
   }
 `;
 
