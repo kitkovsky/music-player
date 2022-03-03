@@ -80,6 +80,7 @@ const PlayControl = styled.div`
   }
   @media screen and (max-width: 850px) {
     width: 50%;
+    margin-bottom: 5rem;
   }
 `;
 

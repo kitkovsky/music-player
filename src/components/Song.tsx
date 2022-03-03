@@ -16,6 +16,7 @@ const SongContainer = styled.div`
     padding: 3rem 1rem 1rem 1rem;
   }
   @media screen and (max-width: 850px) {
+    min-height: 50vh;
     img {
       width: 40%;
     }

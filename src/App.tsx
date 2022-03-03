@@ -11,6 +11,7 @@ import styled from "styled-components";
 const AppContainer = styled.div<StyleProps>`
   transition: all 0.5s ease;
   margin-left: ${(props) => props.isLibraryOpen ? "30%" : "0%"};
+  max-height: 100vh;
 `
 
 interface StyleProps {

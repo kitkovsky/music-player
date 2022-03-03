@@ -9,6 +9,7 @@ const StyledNav = styled.nav`
   justify-content: space-around;
   align-items: center;
   button {
+    color: black;
     background: transparent;
     border: 2px solid rgb(65, 65, 65);
     cursor: pointer;
