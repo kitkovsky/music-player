@@ -35,6 +35,9 @@ const App: React.FC = () => {
         audioRef={audioRef}
         songInfo={songInfo}
         setSongInfo={setSongInfo}
+        songs={songs}
+        currentSong={currentSong}
+        setCurrentSong={setCurrentSong}
       />
       <Library
         songs={songs}
