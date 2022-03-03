@@ -22,13 +22,45 @@ const PlayerContainer = styled.div`
 const TimeControl = styled.div`
   width: 50%;
   display: flex;
-  input {
+  align-items: center;
+  input[type="range"] {
     width: 100%;
     padding: 1rem 2rem;
+    -webkit-appearance: none;
+    background: transparent;
+    cursor: pointer;
+  }
+  input[type="range"]:focus {
+    outline: none;
+  }
+  input[type="range"]::-webkit-slider-thumb,
+  input[type="range"]::-moz-range-thumb {
+    -webkit-appearance: none;
   }
   p {
     padding: 1rem;
   }
+`;
+
+const Track = styled.div<TrackProps>`
+  width: 100%;
+  height: 2rem;
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: ${(props) =>
+    `linear-gradient(to right, ${props.currentSong.colours[0]}, ${props.currentSong.colours[1]})`};
+`;
+
+const AnimateTrack = styled.div<AnimateTrackProps>`
+  background: rgb(204, 204, 204);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: ${(props) => `translateX(${props.songInfo.animationPercentage}%)`};
+  pointer-events: none;
 `;
 
 const PlayControl = styled.div`
@@ -53,6 +85,14 @@ interface Props {
   songs: ISong[];
   currentSong: ISong;
   setCurrentSong: React.Dispatch<React.SetStateAction<ISong>>;
+}
+
+interface AnimateTrackProps {
+  songInfo: ISongInfo;
+}
+
+interface TrackProps {
+  currentSong: ISong;
 }
 
 const Player: React.FC<Props> = ({
@@ -114,13 +154,16 @@ const Player: React.FC<Props> = ({
     <PlayerContainer>
       <TimeControl>
         <p>{getTime(songInfo.currentTime)}</p>
-        <input
-          onChange={(event) => dragHandler(event)}
-          min={0}
-          max={songInfo.duration || 0}
-          value={songInfo.currentTime}
-          type="range"
-        />
+        <Track currentSong={currentSong}>
+          <input
+            onChange={(event) => dragHandler(event)}
+            min={0}
+            max={songInfo.duration || 0}
+            value={songInfo.currentTime}
+            type="range"
+          />
+          <AnimateTrack songInfo={songInfo}></AnimateTrack>
+        </Track>
         <p>{songInfo.duration ? getTime(songInfo.duration) : "0:00"}</p>
       </TimeControl>
       <PlayControl>

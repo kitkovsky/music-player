@@ -14,6 +14,7 @@ const App: React.FC = () => {
   const [songInfo, setSongInfo] = useState<ISongInfo>({
     currentTime: 0,
     duration: 0,
+    animationPercentage: 0,
   });
   const [isLibraryOpen, setIsLibraryOpen] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -22,7 +23,19 @@ const App: React.FC = () => {
     const target = event.target as HTMLAudioElement;
     const duration = target.duration;
     const currentTime = target.currentTime;
-    setSongInfo({ ...songInfo, currentTime: currentTime, duration: duration });
+
+    const roundedCurrent = Math.round(currentTime);
+    const roundedDuration = Math.round(duration);
+    const roundedPercentage = Math.round(
+      (roundedCurrent / roundedDuration) * 100
+    );
+
+    setSongInfo({
+      ...songInfo,
+      currentTime: currentTime,
+      duration: duration,
+      animationPercentage: roundedPercentage,
+    });
   };
 
   return (
