@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import Player from "./components/Player";
 import Song from "./components/Song";
 import Library from "./components/Library";
+import Nav from "./components/Nav";
 import "./styles/global.scss";
 import getSongs from "./global/utils";
 import ISongInfo from "./global/songInfo.interface";
@@ -14,6 +15,7 @@ const App: React.FC = () => {
     currentTime: 0,
     duration: 0,
   });
+  const [isLibraryOpen, setIsLibraryOpen] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const timeUpdateHandler = (event: React.SyntheticEvent<HTMLAudioElement>) => {
@@ -25,6 +27,7 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
+      <Nav isLibraryOpen={isLibraryOpen} setIsLibraryOpen={setIsLibraryOpen} />
       <Song currentSong={currentSong} />
       <Player
         isPlaying={isPlaying}
@@ -39,6 +42,7 @@ const App: React.FC = () => {
         setCurrentSong={setCurrentSong}
         audioRef={audioRef}
         isPlaying={isPlaying}
+        isLibraryOpen={isLibraryOpen}
       />
       <audio
         onTimeUpdate={(event) => timeUpdateHandler(event)}
