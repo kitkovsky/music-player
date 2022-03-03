@@ -120,6 +120,7 @@ const Player: React.FC<Props> = ({
           type="range"
         />
         <p>{getTime(songInfo.duration)}</p>
+        <p>{songInfo.duration ? getTime(songInfo.duration) : "0:00"}</p>
       </TimeControl>
       <PlayControl>
         <FontAwesomeIcon
