@@ -33,9 +33,13 @@ const TimeControl = styled.div`
   input[type="range"]:focus {
     outline: none;
   }
-  input[type="range"]::-webkit-slider-thumb,
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    opacity: 0;
+  }
   input[type="range"]::-moz-range-thumb {
     -webkit-appearance: none;
+    opacity: 0;
   }
   p {
     padding: 1rem;
