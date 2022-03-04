@@ -10,9 +10,11 @@ const LibrarySongContainer = styled.div<StyleProps>`
   height: 15rem;
   cursor: pointer;
   transition: background 0.2s ease;
+
   img {
     height: 100%;
   }
+
   &:hover {
     background: lightblue;
   }
@@ -20,9 +22,11 @@ const LibrarySongContainer = styled.div<StyleProps>`
 
 const SongDescription = styled.div`
   padding-left: 1rem;
+
   h3 {
     font-size: 2rem;
   }
+
   h4 {
     font-size: 1.2rem;
   }

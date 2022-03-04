@@ -16,10 +16,12 @@ const LibraryContainer = styled.div<StyleProps>`
   overflow: scroll;
   background-color: white;
   transition: all 0.5s ease;
+  
   h2 {
     padding: 2rem;
     z-index: -1;
   }
+
   @media screen and (max-width: 850px) {
     width: 100%;
   }

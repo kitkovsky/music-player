@@ -8,19 +8,24 @@ const SongContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   img {
     width: 25%;
     border-radius: 50%;
   }
+
   h2 {
     padding: 3rem 1rem 1rem 1rem;
   }
+
   @media screen and (max-width: 850px) {
     min-height: 50vh;
+
     img {
       width: 40%;
     }
   }
+
   @media screen and (max-width: 550px) {
     img {
       width: 60%;

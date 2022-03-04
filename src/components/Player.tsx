@@ -22,6 +22,7 @@ const TimeControl = styled.div`
   width: 50%;
   display: flex;
   align-items: center;
+
   input[type="range"] {
     width: 100%;
     padding: 1rem 2rem;
@@ -29,20 +30,25 @@ const TimeControl = styled.div`
     background: transparent;
     cursor: pointer;
   }
+
   input[type="range"]:focus {
     outline: none;
   }
+
   input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     opacity: 0;
   }
+
   input[type="range"]::-moz-range-thumb {
     -webkit-appearance: none;
     opacity: 0;
   }
+
   p {
     padding: 1rem;
   }
+  
   @media screen and (max-width: 850px) {
     width: 90%;
   }
@@ -75,9 +81,11 @@ const PlayControl = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
+
   svg {
     cursor: pointer;
   }
+
   @media screen and (max-width: 850px) {
     width: 50%;
     margin-bottom: 5rem;
