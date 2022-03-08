@@ -19,7 +19,7 @@ interface StyleProps {
 }
 
 const App: React.FC = () => {
-  const [songs, setSongs] = useState(getSongs());
+  const [songs] = useState(getSongs());
   const [currentSong, setCurrentSong] = useState(songs[0]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [songInfo, setSongInfo] = useState<ISongInfo>({
