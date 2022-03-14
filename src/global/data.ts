@@ -1,5 +1,5 @@
 import { v4 as uuid } from "uuid";
-import ISong from "./song.interface";
+import { ISong } from "./interfaces";
 
 const getSongs = (): ISong[] => {
   return [

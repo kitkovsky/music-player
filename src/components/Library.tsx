@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ISong from "../global/song.interface";
+import { ISong } from "../global/interfaces";
 import LibrarySong from "./LibrarySong";
 
 const LibraryContainer = styled.div<StyleProps>`

@@ -5,7 +5,7 @@ import Library from "./components/Library";
 import Nav from "./components/Nav";
 import "./styles/global.scss";
 import getSongs from "./global/data";
-import ISongInfo from "./global/songInfo.interface";
+import { ISongInfo } from "./global/interfaces";
 import styled from "styled-components";
 
 const AppContainer = styled.div<StyleProps>`

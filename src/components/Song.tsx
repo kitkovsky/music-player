@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ISong from "../global/song.interface";
+import { ISong } from "../global/interfaces";
 
 const SongContainer = styled.div`
   min-height: 60vh;

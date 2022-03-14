@@ -7,8 +7,7 @@ import {
   faAngleRight,
   faPause,
 } from "@fortawesome/free-solid-svg-icons";
-import ISongInfo from "../global/songInfo.interface";
-import ISong from "../global/song.interface";
+import { ISongInfo, ISong } from "../global/interfaces";
 
 const PlayerContainer = styled.div`
   min-height: 20vh;
