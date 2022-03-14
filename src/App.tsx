@@ -3,16 +3,16 @@ import Player from "./components/Player";
 import Song from "./components/Song";
 import Library from "./components/Library";
 import Nav from "./components/Nav";
-import "./styles/global.scss";
 import getSongs from "./global/data";
 import { ISongInfo } from "./global/interfaces";
 import styled from "styled-components";
+import GlobalStyles from "./styles/GlobalStyles";
 
 const AppContainer = styled.div<StyleProps>`
   transition: all 0.5s ease;
-  margin-left: ${(props) => props.isLibraryOpen ? "30%" : "0%"};
+  margin-left: ${(props) => (props.isLibraryOpen ? "30%" : "0%")};
   max-height: 100vh;
-`
+`;
 
 interface StyleProps {
   isLibraryOpen: boolean;
@@ -66,7 +66,8 @@ const App: React.FC = () => {
   };
 
   return (
-    <AppContainer className="App" isLibraryOpen={isLibraryOpen} >
+    <AppContainer className="App" isLibraryOpen={isLibraryOpen}>
+      <GlobalStyles />
       <Nav isLibraryOpen={isLibraryOpen} setIsLibraryOpen={setIsLibraryOpen} />
       <Song currentSong={currentSong} />
       <Player
